@@ -171,26 +171,26 @@ def resolve_base_stock_availabilities(base_obj, _):
     print("FOO_stats")
     print(FOO_stats)
 
-    return FOO_stats
+    # return FOO_stats
 
-    # return [
-    #     {
-    #         "stock_number": 123, 
-    #         "size": "S", 
-    #         # "base_id": base_obj.id
-    #     },
-    #     {
-    #         "stock_number": 975293939, 
-    #         "size": "XL",
-    #         # "base_id": base_obj.id
-    #     }
-    # ]
+    return [
+        {
+            "available_items": 123, 
+            "size": "S", 
+            # "base_id": base_obj.id
+        },
+        {
+            "available_items": 975293939, 
+            "size": "XL",
+            # "base_id": base_obj.id
+        }
+    ]
 
 
-# @stockAvailability.field("product")
-# def resolve_stock_availability_product(*_): 
-#     product = Product.get()
-#     return product
+@stockAvailability.field("product")
+def resolve_stock_availability_product(*_): 
+    product = Product.get()
+    return product
 
 
 
