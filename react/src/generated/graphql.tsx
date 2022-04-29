@@ -601,6 +601,7 @@ export type Query = {
   user?: Maybe<User>;
   /**  Return all [`Users`]({{Types.User}}) that the client is authorized to view.  */
   users: Array<User>;
+  vahid: Vahid;
 };
 
 
@@ -846,6 +847,11 @@ export type User = {
   organisation?: Maybe<Organisation>;
   validFirstDay?: Maybe<Scalars['Date']>;
   validLastDay?: Maybe<Scalars['Date']>;
+};
+
+export type Vahid = {
+  __typename?: 'Vahid';
+  product: Product;
 };
 
 export type BasesQueryVariables = Exact<{ [key: string]: never; }>;

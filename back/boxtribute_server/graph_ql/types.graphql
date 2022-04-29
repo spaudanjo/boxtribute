@@ -481,3 +481,7 @@ type StockAvailability {
   size: String
   # locations: [Location!]!
 }
+
+type Vahid {
+  product: Product!
+}

@@ -200,6 +200,20 @@ def resolve_base_stock_availabilities(base_obj, _):
 #     return product
 
 
+@query.field("vahid")
+# @box.field("product")
+def resolve_product(obj, _, id=None):
+    # print("resolve_product#obj")
+    # print(obj)
+    product = Product.select()
+    print("VAHID")
+    print(product)
+    # authorize(permission="product:read", base_id=product.base_id)
+    return {
+        "product": product
+    }
+
+
 
 
 

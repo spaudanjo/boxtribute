@@ -35,5 +35,6 @@ type Query {
   shipments: [Shipment!]!
   " Return various metrics about stock and beneficiaries for client's organisation. "
   metrics(organisationId: ID): Metrics
+  vahid: Vahid!
   # stockAvailabilities: [StockAvailability!]!
 }
