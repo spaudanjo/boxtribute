@@ -2,7 +2,7 @@
 from datetime import date
 
 from ariadne import MutationType, ObjectType, QueryType, convert_kwargs_to_snake_case
-from flask import g
+from flask import g, jsonify
 from peewee import fn
 
 from ..authz import authorize
@@ -131,6 +131,8 @@ def resolve_bases(*_):
 #     return locations_for_base
 
 
+
+
 @base.field("stockAvailabilities")
 @convert_kwargs_to_snake_case
 def resolve_base_stock_availabilities(base_obj, _): 
@@ -164,33 +166,38 @@ def resolve_base_stock_availabilities(base_obj, _):
                         .join(Box, on=(Box.location == Location.id))
                         .join(Product, on=(Product.id == Box.product))
                         .join(Size, on=(Size.id == Box.size))
-                        .group_by(Product, Size)                
+                        .group_by(Product, Size)
+                                      
     )
+    #.execute()
+
 
 
     print("FOO_stats")
-    print(FOO_stats)
+    # print(FOO_stats)
+    print(jsonify({'rows':list(FOO_stats)}))
+    # print(list(FOO_stats))
 
-    # return FOO_stats
+    return FOO_stats
 
-    return [
-        {
-            "available_items": 123, 
-            "size": "S", 
-            # "base_id": base_obj.id
-        },
-        {
-            "available_items": 975293939, 
-            "size": "XL",
-            # "base_id": base_obj.id
-        }
-    ]
+    # return [
+    #     {
+    #         "available_items": 123, 
+    #         "size": "S", 
+    #         # "base_id": base_obj.id
+    #     },
+    #     {
+    #         "available_items": 975293939, 
+    #         "size": "XL",
+    #         # "base_id": base_obj.id
+    #     }
+    # ]
 
 
-@stockAvailability.field("product")
-def resolve_stock_availability_product(*_): 
-    product = Product.get()
-    return product
+# @stockAvailability.field("product")
+# def resolve_stock_availability_product(*_): 
+#     product = Product.get()
+#     return product
 
 
 
